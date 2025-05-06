@@ -7,15 +7,16 @@ public class MorseBST {
         root = new Node(' ');
     }
 
+    // Insere o caractere conforme regra de "." a esquerda e "-" a direita
     public void insert(char letter, String morseCode) {
         Node current = root;
-        for (char c : morseCode.toCharArray()) {
-            if (c == '.') {
+        for (char charac : morseCode.toCharArray()) {
+            if (charac == '.') {
                 if (current.left == null) {
                     current.left = new Node(' ');
                 }
                 current = current.left;
-            } else if (c == '-') {
+            } else if (charac == '-') {
                 if (current.right == null) {
                     current.right = new Node(' ');
                 }
@@ -29,6 +30,7 @@ public class MorseBST {
         return encodeHelper(root, Character.toUpperCase(letter), "");
     }
 
+    // procura a letra na árvore
     private String encodeHelper(Node node, char target, String path) {
         if (node == null) return null;
         if (node.letter == target) return path;
@@ -39,6 +41,7 @@ public class MorseBST {
         return encodeHelper(node.right, target, path + "-");
     }
 
+    // Codifica a mensagem
     public String encodeMessage(String message) {
         StringBuilder encoded = new StringBuilder();
         for (char c : message.toUpperCase().toCharArray()) {
@@ -46,12 +49,13 @@ public class MorseBST {
                 encoded.append(" / "); // separador de palavras
             } else {
                 String morse = encode(c);
+                // Caso o caractere não esteja na árvore um "?" é colocado no lugar
                 encoded.append(morse != null ? morse : "?").append(" ");
             }
         }
         return encoded.toString().trim();
     }
-
+    // Decodifica a mensagem
     public char decode(String morseCode) {
         Node current = root;
         for (char c : morseCode.toCharArray()) {

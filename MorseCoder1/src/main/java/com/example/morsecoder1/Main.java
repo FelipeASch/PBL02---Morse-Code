@@ -19,16 +19,16 @@ public class Main extends Application {
         primaryStage.setTitle("Menu Inicial - MorseCoder");
 
         Button viewTreeBtn = new Button("Ver Árvore / Codificar / Decodificar");
-        Button manageTreeBtn = new Button("Adicionar Caracteres / Popular");
+        Button manageTreeBtn = new Button("Adicionar Caracteres");
 
         VBox menuLayout = new VBox(15, viewTreeBtn, manageTreeBtn);
         menuLayout.setPadding(new Insets(20));
         Scene menuScene = new Scene(menuLayout, 400, 150);
 
-        // Botão 1: Visualização da árvore, codificar e decodificar
+        // Botão "Ver árvore"
         viewTreeBtn.setOnAction(e -> showTreeScene(primaryStage, menuScene));
 
-        // Botão 2: Adição de novos caracteres
+        // Botão "Adicionar caracteres"
         manageTreeBtn.setOnAction(e -> showAddCharScene(primaryStage, menuScene));
 
         primaryStage.setScene(menuScene);
@@ -75,7 +75,7 @@ public class Main extends Application {
 
     private void showAddCharScene(Stage stage, Scene menuScene) {
         TextField letterInput = new TextField();
-        letterInput.setPromptText("Letra (A-Z)");
+        letterInput.setPromptText("Letras (A-Z) ou Números (0-9)");
 
         TextField morseInput = new TextField();
         morseInput.setPromptText("Código Morse (. e -)");
